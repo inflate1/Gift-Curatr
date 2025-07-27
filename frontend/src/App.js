@@ -70,7 +70,7 @@ function App() {
           <Route path="/" element={
             <>
               {renderCurrentStep()}
-              <MemoryBox 
+              <EnhancedMemoryBox 
                 isOpen={showMemoryBox}
                 onClose={handleCloseMemoryBox}
               />
