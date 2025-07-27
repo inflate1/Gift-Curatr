@@ -194,7 +194,7 @@ const OccasionModal = ({ isOpen, onClose, onSave, item, recipientName }) => {
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3">
+        <div className="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3 flex-shrink-0">
           <Button variant="outline" onClick={handleClose}>
             Cancel
           </Button>
