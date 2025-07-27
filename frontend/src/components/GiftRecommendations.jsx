@@ -129,11 +129,11 @@ const GiftRecommendations = ({ answers, onBack, onOpenMemoryBox }) => {
           <h1 className="text-4xl font-bold mb-4">
             Perfect Gifts for Your 
             <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              {" " + answers[0]}
+              {" " + recipient.name}
             </span>
           </h1>
           <p className="text-xl text-gray-600 mb-2">
-            Based on their love for {answers[1].toLowerCase()} and your {answers[2]} budget
+            Based on their love for {chatAnswers[1]?.toLowerCase()} and your {chatAnswers[2]} budget
           </p>
           <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
             <Clock className="h-4 w-4" />
