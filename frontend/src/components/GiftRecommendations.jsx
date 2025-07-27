@@ -94,7 +94,7 @@ const GiftRecommendations = ({ answers, onBack, onOpenMemoryBox }) => {
   };
 
   const isItemSaved = (itemId) => {
-    return savedItems.some(item => item.id === itemId);
+    return savedItems.some(item => item.id === itemId && item.recipientId === recipient.id);
   };
 
   const isItemExpired = (item) => {
