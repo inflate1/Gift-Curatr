@@ -85,66 +85,75 @@ const ChatIntake = ({ onComplete, onBack }) => {
       {/* Chat Interface */}
       <div className="px-6 py-8">
         <div className="max-w-2xl mx-auto">
-          {/* Question */}
-          <div className={`transition-all duration-300 ${isAnimating ? 'opacity-0 transform translate-y-4' : 'opacity-100 transform translate-y-0'}`}>
-            <div className="mb-8">
-              <div className="flex items-start space-x-4 mb-6">
-                <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="h-5 w-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="bg-white rounded-2xl rounded-tl-none px-6 py-4 shadow-lg">
-                    <h2 className="text-xl font-semibold text-gray-800 mb-2">
-                      {chatQuestions[currentQuestion].question}
-                    </h2>
-                    <p className="text-gray-600 text-sm">
-                      Select one option to continue
-                    </p>
+          {showRecipientSelector ? (
+            /* Recipient Selection */
+            <RecipientSelector 
+              selectedRecipient={selectedRecipient}
+              onRecipientSelect={handleRecipientSelect}
+              onRecipientCreate={handleRecipientCreate}
+            />
+          ) : (
+            /* Question Flow */
+            <div className={`transition-all duration-300 ${isAnimating ? 'opacity-0 transform translate-y-4' : 'opacity-100 transform translate-y-0'}`}>
+              <div className="mb-8">
+                <div className="flex items-start space-x-4 mb-6">
+                  <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <MessageCircle className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="bg-white rounded-2xl rounded-tl-none px-6 py-4 shadow-lg">
+                      <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                        {chatQuestions[currentQuestion].question}
+                      </h2>
+                      <p className="text-gray-600 text-sm">
+                        For {selectedRecipient?.name} • Select one option to continue
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Answer Options */}
-            <div className="space-y-3">
-              {chatQuestions[currentQuestion].options.map((option, index) => (
-                <Card 
-                  key={index}
-                  className={`cursor-pointer transition-all duration-200 hover:shadow-lg border-2 hover:border-purple-200 ${
-                    answers[currentQuestion] === option 
-                      ? 'border-purple-500 bg-purple-50' 
-                      : 'border-gray-200 hover:border-purple-300'
-                  }`}
-                  onClick={() => handleAnswer(option)}
-                >
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-lg font-medium text-gray-700">
-                        {option}
-                      </span>
-                      {answers[currentQuestion] === option && (
-                        <CheckCircle className="h-5 w-5 text-purple-600" />
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Next Button (only show if current question is answered) */}
-            {answers[currentQuestion] && (
-              <div className="mt-8 flex justify-center">
-                <Button 
-                  onClick={() => handleAnswer(answers[currentQuestion])}
-                  size="lg"
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
-                >
-                  {currentQuestion === chatQuestions.length - 1 ? 'See My Gifts' : 'Next Question'}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+              {/* Answer Options */}
+              <div className="space-y-3">
+                {chatQuestions[currentQuestion].options.map((option, index) => (
+                  <Card 
+                    key={index}
+                    className={`cursor-pointer transition-all duration-200 hover:shadow-lg border-2 hover:border-purple-200 ${
+                      answers[currentQuestion] === option 
+                        ? 'border-purple-500 bg-purple-50' 
+                        : 'border-gray-200 hover:border-purple-300'
+                    }`}
+                    onClick={() => handleAnswer(option)}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-lg font-medium text-gray-700">
+                          {option}
+                        </span>
+                        {answers[currentQuestion] === option && (
+                          <CheckCircle className="h-5 w-5 text-purple-600" />
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
-            )}
-          </div>
+
+              {/* Next Button (only show if current question is answered) */}
+              {answers[currentQuestion] && (
+                <div className="mt-8 flex justify-center">
+                  <Button 
+                    onClick={() => handleAnswer(answers[currentQuestion])}
+                    size="lg"
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+                  >
+                    {currentQuestion === chatQuestions.length - 1 ? 'See My Gifts' : 'Next Question'}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
