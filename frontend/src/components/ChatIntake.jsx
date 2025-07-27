@@ -3,11 +3,14 @@ import { ArrowRight, ArrowLeft, MessageCircle, CheckCircle } from 'lucide-react'
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { chatQuestions } from '../mockData';
+import RecipientSelector from './RecipientSelector';
 
 const ChatIntake = ({ onComplete, onBack }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   const [isAnimating, setIsAnimating] = useState(false);
+  const [selectedRecipient, setSelectedRecipient] = useState(null);
+  const [showRecipientSelector, setShowRecipientSelector] = useState(true);
 
   const handleAnswer = (answer) => {
     const newAnswers = { ...answers, [currentQuestion]: answer };
