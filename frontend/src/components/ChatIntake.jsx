@@ -63,7 +63,8 @@ const ChatIntake = ({ onComplete, onBack }) => {
           <div className="flex items-center space-x-2">
             <MessageCircle className="h-5 w-5 text-purple-600" />
             <span className="font-medium text-gray-700">
-              {currentQuestion + 1} of {chatQuestions.length}
+              {showRecipientSelector ? 'Select Recipient' : 
+               `Question ${currentQuestion + 1} of ${chatQuestions.length}`}
             </span>
           </div>
         </div>
