@@ -53,9 +53,9 @@ const OccasionModal = ({ isOpen, onClose, onSave, item, recipientName }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-hidden">
+      <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+        <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between flex-shrink-0">
           <h2 className="text-xl font-semibold text-gray-800">Add Occasion</h2>
           <Button variant="ghost" size="sm" onClick={handleClose}>
             <X className="h-5 w-5" />
@@ -63,7 +63,7 @@ const OccasionModal = ({ isOpen, onClose, onSave, item, recipientName }) => {
         </div>
 
         {/* Content */}
-        <div className="p-6 overflow-y-auto">
+        <div className="p-6 overflow-y-auto flex-1">
           {/* Gift Info */}
           <div className="mb-6 p-4 bg-gray-50 rounded-lg">
             <div className="flex items-center space-x-3">
