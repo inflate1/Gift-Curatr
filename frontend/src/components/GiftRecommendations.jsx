@@ -248,6 +248,18 @@ const GiftRecommendations = ({ answers, onBack, onOpenMemoryBox }) => {
           </div>
         </div>
       </div>
+      
+      {/* Occasion Modal */}
+      <OccasionModal
+        isOpen={showOccasionModal}
+        onClose={() => {
+          setShowOccasionModal(false);
+          setSelectedItem(null);
+        }}
+        onSave={handleOccasionSave}
+        item={selectedItem}
+        recipientName={recipient?.name}
+      />
     </div>
   );
 };
