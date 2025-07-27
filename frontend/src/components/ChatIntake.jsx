@@ -158,12 +158,14 @@ const ChatIntake = ({ onComplete, onBack }) => {
       </div>
 
       {/* Summary of previous answers */}
-      {currentQuestion > 0 && (
+      {!showRecipientSelector && currentQuestion > 0 && (
         <div className="px-6 pb-8">
           <div className="max-w-2xl mx-auto">
             <Card className="bg-gray-50 border-gray-200">
               <CardContent className="p-4">
-                <h3 className="font-medium text-gray-700 mb-3">Your answers so far:</h3>
+                <h3 className="font-medium text-gray-700 mb-3">
+                  Shopping for {selectedRecipient?.name}:
+                </h3>
                 <div className="space-y-2">
                   {Object.entries(answers).map(([questionIndex, answer]) => (
                     <div key={questionIndex} className="flex items-center text-sm text-gray-600">
