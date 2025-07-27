@@ -23,21 +23,33 @@ const ChatIntake = ({ onComplete, onBack }) => {
         setCurrentQuestion(currentQuestion + 1);
       } else {
         // All questions answered, proceed to recommendations
-        onComplete(newAnswers);
+        onComplete({ ...newAnswers, recipient: selectedRecipient });
       }
       setIsAnimating(false);
     }, 300);
   };
 
+  const handleRecipientSelect = (recipient) => {
+    setSelectedRecipient(recipient);
+    setShowRecipientSelector(false);
+  };
+
+  const handleRecipientCreate = (recipient) => {
+    setSelectedRecipient(recipient);
+    setShowRecipientSelector(false);
+  };
+
   const handleBack = () => {
-    if (currentQuestion > 0) {
+    if (showRecipientSelector) {
+      onBack();
+    } else if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
     } else {
-      onBack();
+      setShowRecipientSelector(true);
     }
   };
 
-  const progress = ((currentQuestion + 1) / chatQuestions.length) * 100;
+  const progress = showRecipientSelector ? 0 : ((currentQuestion + 1) / (chatQuestions.length + 1)) * 100;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
