@@ -5,12 +5,22 @@ import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
 import { useToast } from '../hooks/use-toast';
 import { mockGiftRecommendations, generateExpiryTimestamp } from '../mockData';
+import OccasionModal from './OccasionModal';
 
 const GiftRecommendations = ({ answers, onBack, onOpenMemoryBox }) => {
   const [recommendations, setRecommendations] = useState([]);
   const [savedItems, setSavedItems] = useState([]);
   const [timeRemaining, setTimeRemaining] = useState({});
+  const [showOccasionModal, setShowOccasionModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
   const { toast } = useToast();
+
+  const recipient = answers.recipient;
+  const chatAnswers = {
+    0: answers[0],
+    1: answers[1], 
+    2: answers[2]
+  };
 
   useEffect(() => {
     // Add expiry timestamps to recommendations
