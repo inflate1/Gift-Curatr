@@ -5,6 +5,7 @@ import LandingPage from "./components/LandingPage";
 import ChatIntake from "./components/ChatIntake";
 import GiftRecommendations from "./components/GiftRecommendations";
 import MemoryBox from "./components/MemoryBox";
+import EnhancedMemoryBox from "./components/EnhancedMemoryBox";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
