@@ -58,18 +58,28 @@ const GiftRecommendations = ({ answers, onBack, onOpenMemoryBox }) => {
   }, [recommendations]);
 
   const handleSaveItem = (item) => {
+    setSelectedItem(item);
+    setShowOccasionModal(true);
+  };
+
+  const handleOccasionSave = (occasionData) => {
     const savedItem = {
-      ...item,
-      savedAt: Date.now()
+      ...selectedItem,
+      savedAt: Date.now(),
+      recipientId: recipient.id,
+      occasion: occasionData
     };
     
     const updatedSaved = [...savedItems, savedItem];
     setSavedItems(updatedSaved);
     localStorage.setItem('giftcuratr-saved', JSON.stringify(updatedSaved));
     
+    setShowOccasionModal(false);
+    setSelectedItem(null);
+    
     toast({
       title: "Added to Memory Box",
-      description: `${item.title} has been saved to your Memory Box`,
+      description: `${selectedItem.title} saved for ${recipient.name}`,
     });
   };
 
